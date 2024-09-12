@@ -116,7 +116,7 @@ impl KeycloakAuthInstance {
                     kc_realm,
                     oidc_discovery_endpoint = ?oidc_discovery_endpoint.0.to_string()
                 );
-                log::info!("ITS ME mario");
+
                 perform_oidc_discovery(oidc_discovery_endpoint, retry_strategy)
                     .instrument(span)
                     .await
@@ -189,6 +189,7 @@ async fn perform_oidc_discovery(
     let oidc_config = try_again::retry_async(retry_strategy, try_again::TokioSleep {}, move || {
         let url = oidc_discovery_endpoint.0.clone();
         async move {
+            log::info!("ITS ME mario");
             oidc_discovery::retrieve_oidc_config(url.clone())
                 .await
                 .context(OidcDiscoverySnafu {})
