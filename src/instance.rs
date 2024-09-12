@@ -116,6 +116,7 @@ impl KeycloakAuthInstance {
                     kc_realm,
                     oidc_discovery_endpoint = ?oidc_discovery_endpoint.0.to_string()
                 );
+                log::info!("ITS ME mario");
                 perform_oidc_discovery(oidc_discovery_endpoint, retry_strategy)
                     .instrument(span)
                     .await
