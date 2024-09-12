@@ -78,7 +78,6 @@ where
 
     fn call(&mut self, mut request: Request<Body>) -> Self::Future {
         tracing::debug!("Validating request...");
-
         let clone = self.inner.clone();
         let cloned_layer = self.layer.clone();
 
